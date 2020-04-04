@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Vue Currency Converter</title>
+        
+        <style>
+            *{
+                border-radius: 0;
+            }
+            body {
+                background-color: #545454;
+                font-family: fantasy;
+            }
+            #footer {
+                width: 60%;
+                margin: auto;
+                text-align: center;
+            }
+            label{
+                color: aliceblue;
+            }
+            h1{
+                color: #f6f6f6;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="app">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>From</label>
+                    <select v-model="from" name="" id="" class="form-control">
+                        <option :value="currency.id" v-for="currency in formattedCurrencies">{{ currency.currencyName }}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>To</label>
+                    <select v-model="to" name="" id="" class="form-control">
+                        <option :value="currency.id" v-for="currency in formattedCurrencies">{{ currency.currencyName }}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <input v-model="amount" type="text" class="form-control my-5" placeholder="Amount">
+                    <div class="text-center">
+                        <button :disabled="disabled" @click="convertCurrency()" class="btn btn-lg btn-primary">{{ loading ? "Converting...": "Convert" }}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h1 class="text-center display-2 mt-5">{{ calculateResult }}</h1>
+                </div>
+            </div>
+        </div>
+        
+        <footer id="footer">Copyright &copy;{{ date.getFullYear() }}; Hiran Hasanka</footer>    
+    </div>
+        
+        
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="app.js"></script>
+    </body>
+</html>
